@@ -13,7 +13,12 @@
   align-items: center;
 }
 
+#page-create-point header img {
+  margin: 30px;
+}
+
 #page-create-point header a {
+  margin: 30px;
   color: var(--title-color);
   font-weight: bold;
   text-decoration: none;
@@ -51,8 +56,8 @@
 #page-create-point form legend {
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   margin-bottom: 40px;
 }
 
@@ -71,9 +76,11 @@
   display: flex;
 }
 
+
+
 #page-create-point form .field {
   flex: 1;
-
+  min-width: 0px;
   display: flex;
   flex-direction: column;
   margin-bottom: 24px;
@@ -201,3 +208,74 @@
   background: #E1FAEC;
   border: 2px solid #34CB79;
 }
+
+
+
+/*///////////////////////////////////////////////////*/
+/*///////////////////////////////////////////////////*/
+#page-create-point form .field-group-street-number {
+  flex: 1;
+  width: 100%;
+  display: flex;
+}
+#page-create-point form .field-group-street-number .street{
+  min-width: 0px;
+  flex: 2;
+}
+
+#page-create-point form .field-group-street-number .number{
+  min-width: 0px;
+  flex: 1;
+}
+
+#page-create-point form .field-group-street-number .field + .field {
+  margin-left: 24px;
+}
+
+@media (max-width: 500px){
+
+    /*Making the elements of the header stack one above
+   the other*/
+  #page-create-point header {
+    flex-direction: column;
+  }
+
+  /*Decreasing a little bit the padding from form*/
+  #page-create-point form {
+    padding: 40px;
+  }
+  
+  /*Making the form elements stack one above the other*/
+  #page-create-point form .field-group,
+  #page-create-point form .field-group-street-number{
+    flex-direction: column;
+  }
+
+  /*Removing the left margin that used to separate two
+    fields in the same line*/
+  #page-create-point form .field-group .field + .field,
+  #page-create-point form .field-group-street-number .field + .field 
+   {
+    margin-left: 0px;
+  }
+
+  /*Reducing the height of the map*/
+  #page-create-point form .leaflet-container {
+    height: 250px;
+  }
+
+  /*Making each row of the grid of item have 2 items
+   instead of 3*/
+  .items-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /*Aligning the submit button to the center*/
+  #page-create-point form button {
+    align-self: center;
+  }
+
+}
+/* //////////////////////////////////////////////////*/
+/*///////////////////////////////////////////////////*/
+

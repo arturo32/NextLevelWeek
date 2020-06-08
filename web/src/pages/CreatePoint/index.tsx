@@ -83,7 +83,6 @@ const CreatePoint = () => {
 	//Function to be called when selectedCity is changed
 	useEffect( () => {	
 		if(selectedCity !== ""){
-			console.log(selectedCity.replace(/ /g, "%20"));
 			//GET request that gives the coordinates for a given city and state
 			axios.get(`https://nominatim.openstreetmap.org/search?format=json&q=${selectedCity}%2C+${selectedUf}`)
 				.then(response => {
@@ -121,6 +120,26 @@ const CreatePoint = () => {
 
 	function handleMapClick(e: LeafletMouseEvent){
 		setSelectedPosition([e.latlng.lat, e.latlng.lng]);
+
+		//GET request that gives an address based in given coordinates
+		//One second delay is set to respect the Nominatim usage policy
+		setTimeout( () => {
+			axios.get(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${e.latlng.lat}&lon=${e.latlng.lng}`)
+				.then(res => {
+					const clickedUf = ufs.find(uf => uf.nome  === res.data.address.state);
+					if(clickedUf){
+						setSelectedUf(clickedUf.sigla);
+					}
+					
+					const clickedCity = cities.find(city => city.nome === res.data.address.city);
+					console.log(clickedCity);
+					if(clickedCity){
+						setSelectedCity(clickedCity.nome);
+					}
+				});
+		}, 1000);
+		
+
 	}
 
 	function handleZoom(e: LeafletMouseEvent){ 
@@ -226,7 +245,7 @@ const CreatePoint = () => {
 				<div className="field-group">
 					<div className="field">
 						<label htmlFor="uf">Estado (UF)</label>
-						<select name="uf" id="uf" onChange={handleSelectedUf}>
+						<select name="uf" id="uf" onChange={handleSelectedUf} value={selectedUf}>
 							<option value="0">Selecione um estado</option>
 							{ufs.map(uf => (
 								<option key={uf.sigla} value={uf.sigla} >{uf.nome}</option>
@@ -236,7 +255,7 @@ const CreatePoint = () => {
 					</div>	
 					<div className="field">
 						<label htmlFor="city">Cidade</label>
-						<select name="city" id="city" onChange={handleSelectedCity}>
+						<select name="city" id="city" onChange={handleSelectedCity} value={selectedCity}>
 							<option value="0">Selecione uma cidade</option>
 							{cities.map(city => (
 								<option key={city.id} value={city.nome}>{city.nome}</option>
@@ -244,6 +263,18 @@ const CreatePoint = () => {
 						</select>
 					</div>
 				</div>
+
+				<div className="field-group-street-number">
+					<div className="field street">
+						<label htmlFor="street">Rua</label>
+						<input type="text" name="street" id="street" onChange={handleInputChange}/>
+					</div>
+					<div className="field number">
+						<label htmlFor="houseNumber">Número</label>
+						<input type="text" name="houseNumber" id="houseNumber" onChange={handleInputChange}/>
+					</div>
+				</div>
+
 			</fieldset>
 			<fieldset>
 				<legend>
