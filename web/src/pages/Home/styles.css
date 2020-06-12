@@ -23,10 +23,10 @@
 #page-home .content main {
   flex: 1;
   max-width: 560px;
-
+  margin-top: 7%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 #page-home .content main h1 {
