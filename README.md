@@ -8,9 +8,11 @@ Project developed for the Next Level Week event by <a href="https://rocketseat.c
   <img src="https://github.com/arturo32/NextLevelWeek/blob/master/images/NLW-usage.gif">
 </p>
 
-This project it's about a site that allows you to register a recycling collection point, so people can find one more easily in their city. It is divided in two parts: the back-end, an restful API made with NodeJS, and the front-end, made with ReactJS.
+This project it's about a site that allows you to register a recycling collection point, so people can find one more easily in their city. It is divided in two parts: the back-end, an restful API made with NodeJS, Express (for HTTP requests) and Knex (for database queries), and the front-end, made with ReactJS. MySQL was used instead of SQLite for the database management.
 
 ## What I did differently  
+
+Besides the change in the database manager, I did two more main alterations:
 
 ### Map
 
