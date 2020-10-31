@@ -30,3 +30,67 @@ The original project have a map from the <a href="https://leafletjs.com/">Leafle
 
 The original site wasn't very responsive to different windows sizes. I fixed that with a bit of CSS, messing around with media queries and Flexbox properties.
 
+## How to run
+
+Type the following commands in your terminal:
+
+```bash
+# Clone the repository
+$ git clone https://github.com/arturo32/NextLevelWeek.git
+# Enter the repository
+$ cd NextLevelWeek
+```
+
+### API
+
+In the files NextLevelWeek/server/src/database/connection.ts AND NextLevelWeek/server/knexfile.ts make sure that "user" and "password" are set accordingly with your user and password of MySQL.
+
+Next, create a database named "ecoleta" in MySQL. If you use MySQL in the terminal, open another terminal and type:
+
+```bash
+# Enter MySQL
+mysql -u root -p
+# Create database
+CREATE DATABASE ecoleta;
+```
+
+
+Then, back to your first terminal, type the following commands:
+
+```bash
+# Enter the server folder
+$ cd server
+# Install the dependencies (using npm or yarn)
+$ npm install || yarn install 
+# Fill the proffy database with tables using knex (with npm or yarn)
+npm run knex:migrate || yarn knex:migrate
+# Run the app (using npm or yarn)
+$ npm run dev || yarn dev 
+```
+
+
+If you find problems with the npm `run knex:migrate` (ER_NOT_SUPPORTED_AUTH_MODE), then you have to type the following commands in another terminal:
+```bash
+# Enter MySQL
+mysql -u root -p
+# Create database
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+```
+Where password will be your current password (or new password!) for root access of MySQL.
+
+Access API through http://localhost:3333/
+
+
+### Web
+
+```bash
+# Enter the web folder
+$ cd web
+# Install the dependencies (using npm or yarn)
+$ npm install || yarn install 
+# Run the app (using npm or yarn)
+$ npm start || yarn start 
+```
+
+Access in your browser through http://localhost:3000/ 
+
