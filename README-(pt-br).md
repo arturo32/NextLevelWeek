@@ -1,5 +1,5 @@
 # NextLevelWeek - Ecoleta
-Projeto desenvolvido para o evento Next Level Week event da <a href="https://rocketseat.com.br/">Rocketseat</a>.
+Projeto desenvolvido para o evento Next Level Week da <a href="https://rocketseat.com.br/">Rocketseat</a>.
 
 ## Resumo
 
